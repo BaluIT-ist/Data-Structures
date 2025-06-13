@@ -1,4 +1,4 @@
-package queues;
+package Queues;
 
 public class Nod {
     int info;

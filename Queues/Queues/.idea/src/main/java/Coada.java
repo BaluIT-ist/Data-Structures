@@ -1,4 +1,4 @@
-package queues;
+package Queues;
 
 import java.util.Scanner;
 
@@ -14,8 +14,9 @@ public class Coada {
         {
             return count;
         }
-        Nod aux=firstNode;
 
+
+        Nod aux=firstNode;
         do {
 
             count++;
