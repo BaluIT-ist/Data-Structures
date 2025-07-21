@@ -7,4 +7,8 @@ public class ListNode {
         this.info=info;
         this.nextNode= node;
     }
+    @Override
+    public String toString() {
+        return String.valueOf(info);
+    }
 }

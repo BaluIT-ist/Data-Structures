@@ -7,12 +7,10 @@ import java.util.Scanner;
 
 public class List {
 
-    ListNode head=null;
+    ListNode head = null;
 
-    public ListNode First()
-    {
-        if(head == null)
-        {
+    public ListNode First() {
+        if (head == null) {
             System.out.println("There's not a first number(is an empty list)");
             return null;
         }
@@ -36,59 +34,45 @@ public class List {
         return aux;
     }
 
-    public int Size()
-    {
-        int count =0;
+    public int Size() {
+        int count = 0;
+        ListNode aux = head;
 
-        if(head == null )
-        {
-            return count;
+        while (aux != null) {
+            count++;
+            aux = aux.nextNode;
         }
 
-
-        ListNode aux = head;
-        do{
-            count++;
-            aux=aux.nextNode;
-        }while(head.nextNode!=null);
-
-            return count;
-
+        return count;
     }
 
-        public void PushFront(int x)
-        {
-            ListNode aux = new ListNode(x,null);
-            if(head==null)
-            {
-                head=aux;
-            }
-            else
-            {
 
-                aux.nextNode=head;
-                head=aux;
+    public void PushFront(int x) {
+        ListNode aux = new ListNode(x, null);
+        if (head == null) {
+            head = aux;
+        } else {
 
-            }
+            aux.nextNode = head;
+            head = aux;
+
         }
+    }
 
-        public void PushBack(int x)
-        {
-            ListNode aux = new ListNode(x,null);
-            if(head==null)
-            {
-                head=aux;
-                aux.nextNode = aux;
+    public void PushBack(int x) {
+        ListNode aux = new ListNode(x, null);
+        if (head == null) {
+            head = aux;
+            aux.nextNode = aux;
 
+        } else {
+            ListNode aux2 = head;
+            while (aux2.nextNode != null) {
+                aux2 = aux2.nextNode;
             }
-            else{
-                ListNode aux2= head;
-                while (aux2.nextNode != null) {
-                    aux2 = aux2.nextNode;
-                }
-                aux2.nextNode=aux;
-            }
+            aux2.nextNode = aux;
         }
+    }
 
 
     public ListNode SearchByKeyAndIndex() {
@@ -150,26 +134,23 @@ public class List {
         }
     }
 
-    public ListNode EraseByKeyAndIndex(){
-            Scanner sc = new Scanner(System.in);
+    public ListNode EraseByKeyAndIndex() {
+        Scanner sc = new Scanner(System.in);
 
-            System.out.println("Choose what number to erase");
-            int key = sc.nextInt();
+        System.out.println("Choose what number to erase");
+        int key = sc.nextInt();
 
-            System.out.println("Which occurrence?");
-            int targetOccurrence = sc.nextInt();
+        System.out.println("Which occurrence?");
+        int targetOccurrence = sc.nextInt();
 
-            int matchCount=0;
-            ListNode current=head;
-            ListNode previous=null;
+        int matchCount = 0;
+        ListNode current = head;
+        ListNode previous = null;
 
-        while(current !=null)
-        {
-            if(current.info == key)
-            {
+        while (current != null) {
+            if (current.info == key) {
                 matchCount++;
-                if(matchCount==targetOccurrence)
-                {
+                if (matchCount == targetOccurrence) {
                     if (previous == null) {
                         head = current.nextNode;
                     } else {
@@ -179,14 +160,70 @@ public class List {
                 }
             }
 
-            current=current.nextNode;
-            previous=current;
+            current = current.nextNode;
+            previous = current;
         }
         System.out.println("The " + targetOccurrence + "th occurrence of value " + key + " was not found.");
         return null;
 
+    }
+
+
+    public boolean Empty() {
+        if (head == null) {
+            return true;
+        } else return false;
+    }
+
+    public void EraseDoubles(){
+
+
+        ListNode current = head;
+        while(current != null)
+        {
+            ListNode checker=current;
+            while(checker.nextNode != null)
+            {
+                if(checker.nextNode.info == current.info)
+                {
+                    checker.nextNode = checker.nextNode.nextNode;
+                }
+                else {
+                    checker = checker.nextNode;
+                }
+            }
+            current=current.nextNode;
         }
 
+    }
 
+    public void EraseFromList(){}
+
+    public void Clear() {
+        ListNode current = head;
+        while (current != null) {
+            ListNode next = current.nextNode;
+            current.nextNode = null;
+            current = next;
+        }
+        head = null;
+        System.out.println("The list has been cleared.");
+    }
+
+
+    public void PrintList(){
+            if(head==null) {
+                System.out.println("The list is Empty");
+                return;
+            }
+
+            ListNode current =head;
+        while (current != null) {
+            System.out.print(current.info + " ");
+            current = current.nextNode;
+        }
+        System.out.println();
+
+    }
 
 }
